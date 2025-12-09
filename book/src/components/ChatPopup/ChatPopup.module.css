@@ -1,0 +1,220 @@
+/* book/src/components/ChatPopup/ChatPopup.module.css */
+
+/* Pop-up container styles */
+.chatPopup_wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 100%;
+    max-width: 400px; /* Adjust max-width for pop-up */
+    height: 600px; /* Adjust height for pop-up */
+    background-color: #fff;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000; /* Ensure it's above other content */
+    transform: translateY(100vh); /* Start hidden below viewport */
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    opacity: 0;
+    pointer-events: none; /* Allows clicks to pass through when hidden */
+}
+
+.chatPopup_wrapper.chatPopup_visible {
+    transform: translateY(0); /* Slide up into view */
+    opacity: 1;
+    pointer-events: all; /* Enable interactions when visible */
+}
+
+/* Base chat container styles - adapted from original */
+.chatPopup_container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatPopup_header {
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Modern gradient */
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.chatPopup_header h2 {
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.chatPopup_clearChatButton {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.chatPopup_clearChatButton:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.chatPopup_box {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #eef2f6;
+    display: flex;
+    flex-direction: column;
+}
+
+.chatPopup_message {
+    margin-bottom: 12px;
+    padding: 12px 18px;
+    border-radius: 20px;
+    max-width: 80%;
+    word-wrap: break-word;
+    line-height: 1.5;
+    font-size: 0.95em;
+}
+
+.chatPopup_userMessage {
+    background-color: #007bff;
+    color: white;
+    align-self: flex-end;
+    margin-left: auto;
+    border-bottom-right-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+}
+
+.chatPopup_botMessage {
+    background-color: #ffffff;
+    color: #333;
+    align-self: flex-start;
+    margin-right: auto;
+    border-bottom-left-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.chatPopup_inputContainer {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+    align-items: center;
+}
+
+.chatPopup_inputContainer input {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 12px 18px;
+    margin-right: 10px;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chatPopup_inputContainer input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+.chatPopup_inputContainer button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.chatPopup_inputContainer button:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+/* Loading Indicator Styles */
+.chatPopup_loadingIndicator {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: #f0f2f5;
+    position: absolute;
+    bottom: 70px;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.chatPopup_loadingIndicator.chatPopup_visible {
+    opacity: 1;
+}
+
+.chatPopup_loadingIndicator span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #007bff;
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: bounce 0.6s infinite alternate;
+}
+
+.chatPopup_loadingIndicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.chatPopup_loadingIndicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) { /* Changed from 600px for better pop-up behavior on tablets */
+    .chatPopup_wrapper {
+        width: 100vw;
+        max-width: 100vw;
+        height: 90vh;
+        bottom: 0;
+        right: 0;
+        border-radius: 0;
+    }
+    .chatPopup_header {
+        padding: 10px 15px;
+    }
+    .chatPopup_header h2 {
+        font-size: 1.1em;
+    }
+    .chatPopup_clearChatButton {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+    .chatPopup_inputContainer {
+        padding: 10px;
+    }
+    .chatPopup_inputContainer input,
+    .chatPopup_inputContainer button {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+}

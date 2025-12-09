@@ -1,0 +1,45 @@
+To run and use the chatbot, please follow these steps carefully:
+
+1.  **Update your Gemini API Key:**
+    You need to provide your personal Gemini API key.
+    -   Open the file `book/.env`.
+    -   Inside this file, you will find a line that says `GEMINI_API_KEY=YOUR_GEMINI_API_KEY`.
+    -   Replace `YOUR_GEMINI_API_KEY` with your actual Gemini API key. You can obtain a key from the Google AI Studio website.
+
+2.  **Install Python Dependencies:**
+    The chatbot relies on several Python libraries. You need to install them.
+    -   Open your terminal or command prompt.
+    -   Navigate to the `book/` directory using the command:
+        ```bash
+        cd book/
+        ```
+    -   Once inside the `book/` directory, install the required packages using pip:
+        ```bash
+        pip install -r requirements.txt
+        ```
+    -   After installation, you can navigate back to the root directory if you wish:
+        ```bash
+        cd ..
+        ```
+
+3.  **Create/Update the Vector Database:**
+    The chatbot uses a vector database to retrieve relevant information. You need to ensure this database is created and up-to-date.
+    -   Open your terminal or command prompt (if not already open in the project root).
+    -   Run the vector database creation script:
+        ```bash
+        python book/create_vectordb.py
+        ```
+    -   This script will process your documents and create or update the `vectorstore.pkl` file in your project's root directory. This might take a moment.
+
+4.  **Run the RAG Chatbot Interface:**
+    Once all the previous steps are completed, you can start the chatbot.
+    -   Open your terminal or command prompt (if not already open in the project root).
+    -   Execute the chatbot script:
+        ```bash
+        python book/chatbot.py
+        ```
+    -   The chatbot will start, and you will see a prompt like "RAG Chatbot is ready. Type 'exit' to quit."
+    -   You can then type your questions or queries into the terminal and press Enter. The chatbot will provide a response based on its knowledge base.
+    -   To stop the chatbot, simply type `exit` and press Enter.
+
+By following these steps, you will be able to run and interact with the RAG chatbot.

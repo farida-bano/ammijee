@@ -1,0 +1,208 @@
+/* New styles for the Docusaurus chatbot page */
+.chatbot-main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - var(--docusaurus-navbar-height)); /* Adjust for Docusaurus navbar */
+    background-color: var(--docusaurus-surface-background); /* Use Docusaurus theme background */
+    padding: 20px 0;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 600px;
+    height: 80vh; /* Adjusted for Docusaurus context */
+    background-color: var(--ifm-background-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    margin: 20px auto; /* Centering for Docusaurus */
+}
+
+.chat-header {
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Modern gradient */
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.chat-header h2 {
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.clear-chat-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.clear-chat-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.chat-box {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: var(--ifm-code-background); /* Use a subtle Docusaurus background */
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    margin-bottom: 12px;
+    padding: 12px 18px;
+    border-radius: 20px;
+    max-width: 80%;
+    word-wrap: break-word;
+    line-height: 1.5;
+    font-size: 0.95em;
+}
+
+.user-message {
+    background-color: #007bff;
+    color: white;
+    align-self: flex-end;
+    margin-left: auto;
+    border-bottom-right-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+}
+
+.bot-message {
+    background-color: #ffffff;
+    color: var(--ifm-font-color-base);
+    align-self: flex-start;
+    margin-right: auto;
+    border-bottom-left-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.chat-input-container {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid var(--ifm-contents-border-color);
+    background-color: var(--ifm-background-surface-color);
+    align-items: center;
+}
+
+.chat-input-container input {
+    flex-grow: 1;
+    border: 1px solid var(--ifm-color-gray-300);
+    border-radius: 25px;
+    padding: 12px 18px;
+    margin-right: 10px;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chat-input-container input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+.chat-input-container button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.chat-input-container button:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+/* Loading Indicator Styles */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: var(--ifm-background-surface-color);
+    position: absolute;
+    bottom: 70px; /* Position above the input, adjust as needed */
+    left: 0;
+    right: 0;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; /* Allows clicks to pass through */
+}
+
+.loading-indicator.visible {
+    opacity: 1;
+}
+
+.loading-indicator span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #007bff;
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: bounce 0.6s infinite alternate;
+}
+
+.loading-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) { /* Changed from 600px to better fit Docusaurus breakpoints */
+    .chat-container {
+        height: 90vh; /* Adjust height for smaller screens */
+        border-radius: 0;
+        max-width: 100%;
+        margin: 0;
+    }
+    .chat-header {
+        padding: 10px 15px;
+    }
+    .chat-header h2 {
+        font-size: 1.1em;
+    }
+    .clear-chat-button {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+    .chat-input-container {
+        padding: 10px;
+    }
+    .chat-input-container input,
+    .chat-input-container button {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+    .loading-indicator {
+        bottom: 60px; /* Adjust loading indicator position for smaller input area */
+    }
+}
