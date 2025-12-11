@@ -23,47 +23,110 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingIndicator.classList.remove('visible');
     };
 
-    const sendMessage = async () => {
+    const sendMessage = async (useStreaming = false) => {
         const query = userInput.value.trim();
         if (query) {
             appendMessage('user', query);
             userInput.value = ''; // Clear input field
             showLoadingIndicator(); // Show loading indicator
 
-            // Send query to backend
-            try {
-                const response = await fetch('/chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ query: query }),
-                });
+            if (useStreaming) {
+                // Use streaming endpoint
+                try {
+                    const response = await fetch('/chat-stream', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ query: query }),
+                    });
 
-                if (response.ok) {
-                    const data = await response.json();
-                    appendMessage('bot', data.response);
-                } else {
-                    const errorData = await response.json();
-                    appendMessage('bot', `Error: ${errorData.message || response.statusText}`);
+                    if (response.ok && response.body) {
+                        const reader = response.body.getReader();
+                        const decoder = new TextDecoder();
+                        let buffer = '';
+                        let botMessageElement = null;
+
+                        while (true) {
+                            const { done, value } = await reader.read();
+                            if (done) break;
+
+                            buffer += decoder.decode(value, { stream: true });
+                            const lines = buffer.split('\n');
+                            buffer = lines.pop(); // Keep last incomplete line in buffer
+
+                            for (const line of lines) {
+                                if (line.trim() === '') continue;
+                                try {
+                                    const data = JSON.parse(line);
+
+                                    if (data.token !== undefined) {
+                                        // Create or update bot message element for streaming
+                                        if (!botMessageElement) {
+                                            botMessageElement = document.createElement('div');
+                                            botMessageElement.classList.add('message', 'bot-message');
+                                            chatBox.appendChild(botMessageElement);
+                                        }
+                                        botMessageElement.textContent += data.token;
+                                        chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll
+                                    } else if (data.done) {
+                                        // Final response received
+                                        break;
+                                    }
+                                } catch (e) {
+                                    console.error('Error parsing streaming response:', e);
+                                }
+                            }
+                        }
+
+                        // Ensure we scroll to the bottom when done
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                    } else {
+                        const errorData = await response.json();
+                        appendMessage('bot', `Error: ${errorData.message || response.statusText}`);
+                    }
+                } catch (error) {
+                    console.error('Network or server error:', error);
+                    appendMessage('bot', 'Error: Could not connect to the server.');
+                } finally {
+                    hideLoadingIndicator(); // Hide loading indicator
                 }
-            } catch (error) {
-                console.error('Network or server error:', error);
-                appendMessage('bot', 'Error: Could not connect to the server.');
-            } finally {
-                hideLoadingIndicator(); // Hide loading indicator
+            } else {
+                // Use regular endpoint (existing functionality)
+                try {
+                    const response = await fetch('/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ query: query }),
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        appendMessage('bot', data.response);
+                    } else {
+                        const errorData = await response.json();
+                        appendMessage('bot', `Error: ${errorData.message || response.statusText}`);
+                    }
+                } catch (error) {
+                    console.error('Network or server error:', error);
+                    appendMessage('bot', 'Error: Could not connect to the server.');
+                } finally {
+                    hideLoadingIndicator(); // Hide loading indicator
+                }
             }
         }
     };
 
-    // Event listener for the send button
-    sendButton.addEventListener('click', sendMessage);
+    // Event listener for the send button - using streaming
+    sendButton.addEventListener('click', () => sendMessage(true));
 
     // Event listener for the input field to allow sending with Enter key
     userInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault(); // Prevent default form submission if any
-            sendMessage();
+            sendMessage(true); // Use streaming
         }
     });
 

@@ -6,8 +6,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Physical AI & Humanoid Robotics Book',
-  tagline: 'Farida Bano',
-  favicon: 'img/favicon.ico',
+  tagline: 'Farida Bano - With Integrated AI Assistant',
+  favicon: 'img/2.jpg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -43,6 +43,7 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
+          routeBasePath: '/', // Serve the docs at the site's root
         },
         blog: {
           showReadingTime: true,
@@ -66,24 +67,32 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/1.jpg',
     colorMode: {
       respectPrefersColorScheme: true,
     },
     navbar: {
       title: 'Physical AI & Humanoid Robotics Book',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Physical AI & Humanoid Robotics Logo',
+        src: 'img/logo.png',
+        width: 32,
+        height: 32,
       },
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Book',
+          label: 'Book Chapters',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          type: 'doc',
+          docId: 'intro',
+          position: 'left',
+          label: 'Quick Start',
+        },
         {
           href: 'https://github.com/your-org/physical-ai-book',
           label: 'GitHub',
@@ -95,11 +104,40 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Book Sections',
           items: [
             {
-              label: 'Book',
+              label: 'Introduction',
+              to: '/docs/intro',
+            },
+            {
+              label: 'Chapter 1: Physics Simulators',
               to: '/docs/chapter-01',
+            },
+            {
+              label: 'Chapter 2: Hardware Components',
+              to: '/docs/chapter-02',
+            },
+            {
+              label: 'Chapter 3: Control Systems',
+              to: '/docs/chapter-03',
+            },
+          ],
+        },
+        {
+          title: 'Resources',
+          items: [
+            {
+              label: 'Documentation',
+              to: '/docs/intro',
+            },
+            {
+              label: 'API Reference',
+              to: '/docs/chapter-01',
+            },
+            {
+              label: 'Tutorials',
+              to: '/docs/chapter-02',
             },
           ],
         },
@@ -129,17 +167,39 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/your-org/physical-ai-book',
+              href: 'https://github.com/farida-bano/physical-ai-humanoid-robotics-book',
+            },
+            {
+              html: `
+                <div style="margin-top: 1rem;">
+                  <a href="https://github.com/farida-bano/physical-ai-humanoid-robotics-book" target="_blank">
+                    <img src="https://img.shields.io/github/stars/farida-bano/physical-ai-humanoid-robotics-book?style=social" alt="GitHub Stars" />
+                  </a>
+                </div>
+              `,
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics. Powered by Farida Bot AI Assistant. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    algolia: {
+      // The application ID provided by Algolia
+      appId: 'YOUR_ALGOLIA_APP_ID',
+      // Public API key: it is safe to commit it
+      apiKey: 'YOUR_ALGOLIA_API_KEY',
+      indexName: 'physical-ai-humanoid-robotics',
+      contextualSearch: true,
+    },
+    metadata: [
+      {name: 'keywords', content: 'physical AI, humanoid robotics, AI assistant, robotics, machine learning'},
+      {name: 'author', content: 'Farida Bano'},
+      {property: 'og:image', content: 'img/1.jpg'},
+    ],
   } satisfies Preset.ThemeConfig,
 };
 

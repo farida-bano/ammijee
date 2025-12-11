@@ -67,8 +67,8 @@ const config: Config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'book',
-        path: 'manuscript',
-        routeBasePath: '/',
+        path: './manuscript',
+        routeBasePath: '/', // This will serve the book at the root level
         sidebarPath: './sidebars.ts',
       },
     ],
@@ -89,7 +89,7 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'bookSidebar', // Assuming 'bookSidebar' will be defined in sidebars.ts
+          sidebarId: 'bookSidebar',
           docsPluginId: 'book',
           position: 'left',
           label: 'Book',

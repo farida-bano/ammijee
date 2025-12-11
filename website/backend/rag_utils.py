@@ -37,6 +37,7 @@ def get_embedding_model():
     return SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
 def extract_chapters(directory_path):
+    import os
     chapters = []
     for filename in os.listdir(directory_path):
         if filename.endswith(".md"):

@@ -24,7 +24,7 @@ def get_llm_response(prompt):
     """
     if not generation_model:
         return "LLM not available. Please check API key and model configuration."
-    
+
     try:
         response = generation_model.generate_content(prompt)
         # Access the text from the candidate if available
@@ -39,6 +39,26 @@ def get_llm_response(prompt):
     except Exception as e:
         print(f"Error generating LLM response: {e}")
         return "Error generating response from LLM."
+
+def get_llm_streaming_response(prompt):
+    """
+    Integrate with a Large Language Model (LLM) for generating streaming responses using Gemini API.
+    """
+    if not generation_model:
+        yield "LLM not available. Please check API key and model configuration."
+        return
+
+    try:
+        response = generation_model.generate_content(prompt, stream=True)
+
+        for chunk in response:
+            if chunk.candidates and chunk.candidates[0].content.parts:
+                yield chunk.candidates[0].content.parts[0].text
+            else:
+                yield " "
+    except Exception as e:
+        print(f"Error generating streaming LLM response: {e}")
+        yield "Error generating response from LLM."
 
 def generate_rag_response(query_text, k=3):
     """

@@ -5,3 +5,8 @@ pydantic-settings
 google-generativeai
 langchain
 langchain-text-splitters
+qdrant-client
+cohere
+python-dotenv
+numpy
+pytest
