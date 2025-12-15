@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Physical AI & Humanoid Robotics Book',
+  title: 'Jee Book',
   tagline: 'Farida Bano - With Integrated AI Assistant',
   favicon: 'img/2.jpg',
 
@@ -44,6 +44,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           routeBasePath: '/', // Serve the docs at the site's root
+          editUrl: undefined, // Explicitly set to undefined to remove "edit this page" links
         },
         blog: {
           showReadingTime: true,
@@ -72,9 +73,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Physical AI & Humanoid Robotics Book',
+      title: 'Jee Book',
       logo: {
-        alt: 'Physical AI & Humanoid Robotics Logo',
+        alt: 'Jee Logo',
         src: 'img/logo.png',
         width: 32,
         height: 32,
@@ -84,7 +85,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Book Chapters',
+          label: 'Chapters',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -93,6 +94,7 @@ const config: Config = {
           position: 'left',
           label: 'Quick Start',
         },
+        {type: 'doc', docId: 'folder-structure', label: 'Folder Structure', position: 'left'},
         {
           href: 'https://github.com/your-org/physical-ai-book',
           label: 'GitHub',
@@ -108,19 +110,19 @@ const config: Config = {
           items: [
             {
               label: 'Introduction',
-              to: '/docs/intro',
+              to: '/intro',
             },
             {
               label: 'Chapter 1: Physics Simulators',
-              to: '/docs/chapter-01',
+              to: '/chapter-01',
             },
             {
               label: 'Chapter 2: Hardware Components',
-              to: '/docs/chapter-02',
+              to: '/chapter-02',
             },
             {
               label: 'Chapter 3: Control Systems',
-              to: '/docs/chapter-03',
+              to: '/chapter-03',
             },
           ],
         },
@@ -129,59 +131,20 @@ const config: Config = {
           items: [
             {
               label: 'Documentation',
-              to: '/docs/intro',
+              to: '/intro',
             },
             {
               label: 'API Reference',
-              to: '/docs/chapter-01',
+              to: '/chapter-01',
             },
             {
               label: 'Tutorials',
-              to: '/docs/chapter-02',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/farida-bano/physical-ai-humanoid-robotics-book',
-            },
-            {
-              html: `
-                <div style="margin-top: 1rem;">
-                  <a href="https://github.com/farida-bano/physical-ai-humanoid-robotics-book" target="_blank">
-                    <img src="https://img.shields.io/github/stars/farida-bano/physical-ai-humanoid-robotics-book?style=social" alt="GitHub Stars" />
-                  </a>
-                </div>
-              `,
+              to: '/chapter-02',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics. Powered by Farida Bot AI Assistant. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Jee. Powered by Farida Bot AI Assistant. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
@@ -192,11 +155,11 @@ const config: Config = {
       appId: 'YOUR_ALGOLIA_APP_ID',
       // Public API key: it is safe to commit it
       apiKey: 'YOUR_ALGOLIA_API_KEY',
-      indexName: 'physical-ai-humanoid-robotics',
+      indexName: 'jee',
       contextualSearch: true,
     },
     metadata: [
-      {name: 'keywords', content: 'physical AI, humanoid robotics, AI assistant, robotics, machine learning'},
+      {name: 'keywords', content: 'jee, AI assistant, education, learning'},
       {name: 'author', content: 'Farida Bano'},
       {property: 'og:image', content: 'img/1.jpg'},
     ],

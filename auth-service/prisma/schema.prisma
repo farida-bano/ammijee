@@ -1,0 +1,68 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                 String   @id @default(cuid())
+  userId             String
+  providerId         String
+  providerAccountId  String
+  accessToken        String?
+  refreshToken       String?
+  idToken            String?
+  expiresAt          Int?
+  password           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([providerId, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  expiresAt    DateTime
+  ipAddress    String?
+  userAgent    String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model User {
+  id              String    @id @default(cuid())
+  name            String?
+  email           String?   @unique
+  emailVerified   Boolean   @default(false)
+  profileImage    String?
+  role            String    @default("user")
+  profilePicture  String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  accounts Account[]
+  sessions Session[]
+
+  @@map("users")
+}
+
+model Verification {
+  id         String   @id @default(cuid())
+  identifier String   // could be email or phone
+  value      String
+  expiresIn  BigInt
+  type       String   // email-verification, forgot-password, etc.
+  createdAt  DateTime @default(now())
+
+  @@unique([identifier, type])
+  @@map("verifications")
+}

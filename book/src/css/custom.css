@@ -4,29 +4,388 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
+/* Enhanced theme colors and gradients */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #2575fc;
+  --ifm-color-primary-dark: #2168e0;
+  --ifm-color-primary-darker: #1e5cc4;
+  --ifm-color-primary-darkest: #194ca8;
+  --ifm-color-primary-light: #3a85ff;
+  --ifm-color-primary-lighter: #5a9cff;
+  --ifm-color-primary-lightest: #7aaeff;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-color-farida-bano: #2d8c9c;
+
+  /* Additional theme colors */
+  --ifm-color-secondary: #6a11cb;
+  --ifm-card-background-color: #ffffff;
+  --ifm-card-border-radius: 12px;
+  --ifm-card-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --ifm-hover-transform: translateY(-3px);
+  --ifm-transition: all 0.3s ease;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark mode theme enhancement */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  --ifm-color-primary: #5a9cff;
+  --ifm-color-primary-dark: #3a85ff;
+  --ifm-color-primary-darker: #2575fc;
+  --ifm-color-primary-darkest: #2168e0;
+  --ifm-color-primary-light: #7aaeff;
+  --ifm-color-primary-lighter: #9acbff;
+  --ifm-color-primary-lightest: #bbd9ff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   --ifm-color-farida-bano-dark: #2d8c9c;
+  --ifm-card-background-color: #2a2e3a;
+  --ifm-card-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced button styles */
+.button {
+  border-radius: 8px;
+  font-weight: 600;
+  transition: var(--ifm-transition);
+  box-shadow: var(--ifm-card-shadow);
+}
+
+.button:hover {
+  transform: var(--ifm-hover-transform);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Card and container enhancements */
+.card {
+  border-radius: var(--ifm-card-border-radius);
+  overflow: hidden;
+  transition: var(--ifm-transition);
+  box-shadow: var(--ifm-card-shadow);
+}
+
+.card:hover {
+  transform: var(--ifm-hover-transform);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Navigation bar enhancements */
+.navbar {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: var(--ifm-transition);
+}
+
+/* Custom link styles */
+a {
+  transition: var(--ifm-transition);
+}
+
+/* Responsive improvements */
+@media (max-width: 996px) {
+  .navbar-sidebar__brand {
+    padding: 1rem;
+  }
+
+  .hero__title {
+    font-size: 2.5rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero__title {
+    font-size: 2rem;
+  }
+
+  .button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero__title {
+    font-size: 1.8rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+
+  .heroBanner {
+    padding: 2rem 1rem;
+  }
+}
+
+/* Enhanced typography */
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Code block improvements */
+.prism-code {
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+/* Table styling */
+table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+th {
+  background-color: var(--ifm-color-emphasis-100);
+  font-weight: 600;
+}
+
+/* Alert enhancements */
+.alert {
+  border-radius: 8px;
+  border-left-width: 4px;
+}
+
+/* Pagination controls */
+.pagination-nav__link {
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  transition: var(--ifm-transition);
+}
+
+.pagination-nav__link:hover {
+  transform: var(--ifm-hover-transform);
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Doc sidebar enhancements */
+.menu__list-item-collapsible:hover {
+  background-color: var(--ifm-color-emphasis-100);
+  border-radius: 6px;
+}
+
+/* Search bar enhancements (if using Algolia) */
+.search-bar {
+  border-radius: 20px;
+}
+
+/* Enhanced Footer Styles */
+.footer-enhanced {
+  background: linear-gradient(135deg, #2c3e50 0%, #1a1a2e 100%);
+  color: white;
+  padding-top: 3rem;
+  padding-bottom: 1rem;
+}
+
+.footer-enhanced h4 {
+  color: white;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-enhanced h4::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  border-radius: 3px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: var(--ifm-transition);
+  position: relative;
+  padding-left: 15px;
+}
+
+.footer-links a::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  transition: var(--ifm-transition);
+}
+
+.footer-links a:hover {
+  color: white;
+  padding-left: 20px;
+}
+
+.footer-links a:hover::before {
+  opacity: 1;
+  left: 5px;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.newsletter-input {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.newsletter-button {
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--ifm-transition);
+}
+
+.newsletter-button:hover {
+  transform: var(--ifm-hover-transform);
+  box-shadow: 0 4px 12px rgba(37, 117, 252, 0.4);
+}
+
+.subscription-success {
+  color: #4ade80;
+  font-size: 0.9rem;
+  margin: 10px 0 0;
+  animation: fadeInUp 0.5s ease;
+}
+
+.social-icons {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 15px;
+}
+
+.chatbot-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  transition: var(--ifm-transition);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.chatbot-icon:hover {
+  transform: var(--ifm-hover-transform);
+  border-color: white;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-bottom-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: var(--ifm-transition);
+}
+
+.footer-bottom-links a:hover {
+  color: white;
+}
+
+/* Animation for footer elements */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-enhanced {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .footer-enhanced .row > div {
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .footer-bottom-links {
+    justify-content: center;
+  }
+}
+
+/* Original footer styles (for reference if needed) */
+.footer {
+  background: linear-gradient(135deg, #2c3e50 0%, #1a1a2e 100%);
+  color: white;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.footer__title {
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.footer__link-item {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer__link-item:hover {
+  color: white;
 }

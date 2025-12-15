@@ -8,6 +8,16 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  background:
+    linear-gradient(rgba(106, 17, 203, 0.7), rgba(37, 117, 252, 0.7)),
+    url('/img/robot.png') no-repeat center center,
+    linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  background-size: 30%, auto;
+  color: white;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 996px) {
@@ -16,8 +26,384 @@
   }
 }
 
-.buttons {
+.heroContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heroText {
+  flex: 1;
+  text-align: left;
+}
+
+.heroImage {
+  flex: 0 0 300px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.bookCover {
+  width: 200px;
+  height: 280px;
+  position: relative;
+  perspective: 1000px;
+}
+
+.bookSpine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 100%;
+  background: linear-gradient(90deg, #2d2d5e 0%, #1a1a3a 100%);
+  border-left: 3px solid #ffd700;
+  border-radius: 5px 0 0 5px;
+}
+
+.bookFront {
+  position: absolute;
+  left: 30px;
+  top: 0;
+  width: 170px;
+  height: 100%;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  border-radius: 0 5px 5px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transform: rotateY(0deg);
+  transition: transform 0.5s ease;
+}
+
+.bookFront:hover {
+  transform: rotateY(5deg);
+}
+
+.bookTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: white;
+  text-align: center;
+}
+
+.bookAuthor {
+  font-size: 0.8rem;
+  color: #ffd700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.bookIcon {
+  font-size: 2.5rem;
+  margin-top: 10px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.featuresSection {
+  padding: 4rem 0;
+  background-color: var(--ifm-background-color);
+}
+
+.featureCard {
+  background: var(--ifm-card-background-color);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.featureCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-color: var(--ifm-color-primary);
+}
+
+.featureCard h3 {
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary);
+}
+
+.featureCard p {
+  color: var(--ifm-font-color-base);
+}
+
+/* Book Preview Section */
+.bookPreview {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 100%);
+}
+
+.previewTitle {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary);
+  position: relative;
+  display: inline-block;
+}
+
+.previewTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  border-radius: 2px;
+}
+
+.previewSubtitle {
+  font-size: 1.2rem;
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 3rem;
+}
+
+.previewCard {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  height: 100%;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.previewCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  border-color: var(--ifm-color-primary);
+}
+
+.previewIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.previewCardTitle {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary-dark);
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 5rem 0;
+  background: white;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--ifm-color-primary);
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  border-radius: 2px;
+}
+
+.testimonialCard {
+  background: var(--ifm-card-background-color);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  height: 100%;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonialCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  border-color: var(--ifm-color-primary);
+}
+
+.quoteIcon {
+  font-size: 3rem;
+  color: var(--ifm-color-primary-light);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.quote {
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  color: var(--ifm-font-color-base);
+  position: relative;
+}
+
+.quote::before,
+.quote::after {
+  content: '"';
+  font-size: 2rem;
+  color: var(--ifm-color-emphasis-200);
+  position: absolute;
+}
+
+.quote::before {
+  left: -15px;
+  top: -10px;
+}
+
+.author {
+  text-align: center;
+}
+
+.authorName {
+  font-weight: bold;
+  color: var(--ifm-color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.authorRole {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.9rem;
+}
+
+/* Book Highlights Section */
+.highlights {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
+}
+
+.highlightIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.highlightTitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.highlightDesc {
+  font-size: 0.9rem;
+  color: var(--ifm-font-color-base);
+}
+
+@media screen and (max-width: 996px) {
+  .featuresSection {
+    padding: 2rem 0;
+  }
+
+  .testimonials,
+  .bookPreview,
+  .highlights {
+    padding: 3rem 0;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .heroContent {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .heroText {
+    text-align: center;
+  }
+
+  .heroImage {
+    margin-top: 2rem;
+  }
+
+  .highlightDesc {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .highlight {
+    margin-bottom: 2rem;
+  }
+
+  .col--2 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .heroBanner {
+    padding: 2rem 1rem;
+    min-height: auto;
+  }
+
+  .button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .bookCover {
+    width: 150px;
+    height: 220px;
+  }
+
+  .bookSpine {
+    width: 20px;
+  }
+
+  .bookFront {
+    left: 20px;
+    width: 130px;
+  }
+
+  .previewTitle {
+    font-size: 2rem;
+  }
+
+  .col--2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
 }

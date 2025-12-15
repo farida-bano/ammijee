@@ -1,4 +1,4 @@
-import React from 'react'; // Import useState
+import React, { useState } from 'react'; // Import useState
 import clsx from 'clsx';
 import ErrorBoundary from '@docusaurus/ErrorBoundary';
 import {
@@ -14,7 +14,7 @@ import Footer from '@theme/Footer';
 import LayoutProvider from '@theme/Layout/Provider';
 import ErrorPageContent from '@theme/ErrorPageContent';
 import styles from './styles.module.css';
-// import ChatPopup from '@site/src/components/ChatPopup'; // Import ChatPopup
+import ChatPopup from '@site/src/components/ChatPopup'; // Import ChatPopup
 
 export default function Layout(props) {
   const {
@@ -26,15 +26,15 @@ export default function Layout(props) {
   } = props;
   useKeyboardNavigation();
 
-  // const [isChatPopupVisible, setIsChatPopupVisible] = useState(false); // State for popup visibility
+  const [isChatPopupVisible, setIsChatPopupVisible] = useState(false); // State for popup visibility
 
-  // const toggleChatPopup = () => {
-  //   setIsChatPopupVisible((prev) => !prev);
-  // };
+  const toggleChatPopup = () => {
+    setIsChatPopupVisible((prev) => !prev);
+  };
 
-  // const closeChatPopup = () => {
-  //   setIsChatPopupVisible(false);
-  // };
+  const closeChatPopup = () => {
+    setIsChatPopupVisible(false);
+  };
 
   return (
     <LayoutProvider>
@@ -62,13 +62,14 @@ export default function Layout(props) {
       {!noFooter && <Footer />}
 
       {/* Floating Button */}
-      {/* <button
+      <button
         style={{
           position: 'fixed',
           bottom: '20px',
           right: '20px',
           zIndex: 1001, // Above the chat popup
-          backgroundColor: '#007bff',
+          backgroundColor: '#6a11cb',
+          backgroundImage: 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)',
           color: 'white',
           border: 'none',
           borderRadius: '50%',
@@ -76,18 +77,28 @@ export default function Layout(props) {
           height: '60px',
           fontSize: '24px',
           cursor: 'pointer',
-          boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         }}
         onClick={toggleChatPopup}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'translateY(-5px) scale(1.1)';
+          e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.3)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'translateY(0) scale(1)';
+          e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+        }}
+        aria-label="Open Farida Bot"
       >
-        💬
-      </button> */}
+        <span title="Farida Bot">🤖</span>
+      </button>
 
       {/* Chat Popup Component */}
-      {/* <ChatPopup isVisible={isChatPopupVisible} onClose={closeChatPopup} /> */}
+      <ChatPopup isVisible={isChatPopupVisible} onClose={closeChatPopup} />
     </LayoutProvider>
   );
 }

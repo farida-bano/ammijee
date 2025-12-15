@@ -45,10 +45,47 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.chatPopup_headerContent {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
 .chatPopup_header h2 {
     margin: 0;
     font-size: 1.3em;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.3s ease;
+}
+
+.chatPopup_header h2:hover {
+    transform: translateX(5px);
+}
+
+.languageSelector {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.languageSelector:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1.05);
+}
+
+.languageSelector:focus {
+    border-color: white;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
 .chatPopup_clearChatButton {

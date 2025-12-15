@@ -6,8 +6,8 @@ import Layout from '@theme/Layout';
 function Home() {
   return (
     <Layout
-      title={`Physical AI & Humanoid Robotics`}
-      description="A comprehensive guide to building intelligent, human-like robots">
+      title={`Jee`}
+      description="Jee educational content">
       <div className="hero hero--primary" style={{
         position: 'relative',
         overflow: 'hidden',

@@ -15,6 +15,7 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
   // Define the book sidebar with manual entries
   bookSidebar: [
+    'intro',
     {
       type: 'category',
       label: 'Book Chapters',
@@ -34,6 +35,13 @@ const sidebars: SidebarsConfig = {
         'chapter-13',
         'chapter-14',
         'chapter-template'
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Project Info',
+      items: [
+        'folder-structure',
       ],
     },
   ],

@@ -10,10 +10,11 @@ interface Message {
 
 function ChatbotPage(): JSX.Element {
   const [messages, setMessages] = useState<Message[]>([
-    { sender: 'bot', text: 'Hello! Ask me anything about Physical AI.' },
+    { sender: 'bot', text: 'Hello! I\'m Farida Bot. Ask me anything about Physical AI.' },
   ]);
   const [userInput, setUserInput] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false); // New loading state
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('en'); // For translation
   const chatBoxRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to the latest message
@@ -38,7 +39,10 @@ function ChatbotPage(): JSX.Element {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ query: query }),
+        body: JSON.stringify({
+          query: query,
+          language: selectedLanguage // Include language for translation
+        }),
       });
 
       if (response.ok) {
@@ -57,19 +61,39 @@ function ChatbotPage(): JSX.Element {
   };
 
   const clearChat = () => {
-    setMessages([{ sender: 'bot', text: 'Hello! Ask me anything about Physical AI.' }]);
+    setMessages([{ sender: 'bot', text: 'Hello! I\'m Farida Bot. Ask me anything about Physical AI.' }]);
     setUserInput('');
   };
 
+  // Language options for translation
+  const languages = [
+    { code: 'en', name: 'English' },
+    { code: 'ur', name: 'Urdu' },
+    { code: 'es', name: 'Spanish' },
+    { code: 'fr', name: 'French' },
+    { code: 'de', name: 'German' },
+  ];
+
   return (
     <Layout
-      title="Chatbot"
-      description="Chat with your book about Physical AI"
+      title="Farida Bot"
+      description="Chat with Farida Bot about Physical AI"
     >
       <main className="chatbot-main-content">
         <div className="chat-container">
           <div className="chat-header">
-            <h2>RAG Chatbot</h2>
+            <div className="chat-header-content">
+              <h2>🤖 Farida Bot</h2>
+              <select
+                value={selectedLanguage}
+                onChange={(e) => setSelectedLanguage(e.target.value)}
+                className="language-selector"
+              >
+                {languages.map((lang) => (
+                  <option key={lang.code} value={lang.code}>{lang.name}</option>
+                ))}
+              </select>
+            </div>
             <button onClick={clearChat} className="clear-chat-button">Clear Chat</button>
           </div>
           <div className="chat-box" id="chat-box" ref={chatBoxRef}>

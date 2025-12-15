@@ -1,56 +1,66 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  icon: string;
   description: ReactNode;
+  to?: string;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Comprehensive Coverage',
+    icon: '📖',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Explore all aspects of Physical AI from foundational concepts to advanced implementations.
+        Our book provides in-depth coverage of both theoretical and practical elements.
       </>
     ),
+    to: "/intro"
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Interactive Learning',
+    icon: '🎯',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Engage with interactive examples, code snippets, and hands-on exercises that reinforce
+        key concepts in Physical AI. Learn by doing with practical applications.
       </>
     ),
+    to: "/intro"
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Expert Guidance',
+    icon: '🧠',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Benefit from expert insights and best practices developed by leading researchers in
+        Physical AI. Gain knowledge from real-world applications and case studies.
       </>
     ),
+    to: "/intro"
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, icon, description, to}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
       <div className="text--center padding-horiz--md">
+        <div className={styles.featureIcon}>
+          <span style={{fontSize: '3rem'}}>{icon}</span>
+        </div>
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>
+        {to && (
+          <Link to={to} className="button button--primary button--sm margin-top--md">
+            Read More
+          </Link>
+        )}
       </div>
     </div>
   );

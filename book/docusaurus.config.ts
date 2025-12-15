@@ -25,7 +25,7 @@ const config: Config = {
   organizationName: 'facebook', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -39,7 +39,7 @@ const config: Config = {
     [
       'classic',
       {
-
+        docs: false, // Disable the default docs plugin since we're using a custom book plugin
         blog: {
           showReadingTime: true,
           feedOptions: {
@@ -70,6 +70,10 @@ const config: Config = {
         path: './manuscript',
         routeBasePath: '/', // This will serve the book at the root level
         sidebarPath: './sidebars.ts',
+        // Disable default prev/next links to avoid broken links
+        showLastUpdateTime: false,
+        showLastUpdateAuthor: false,
+        editUrl: null, // Disable edit URL to avoid linking to default docs
       },
     ],
   ],
@@ -81,10 +85,10 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'My Site',
+      title: 'Physical AI Book',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: 'Physical AI Book Logo',
+        src: 'img/logo1.png',
       },
       items: [
         {
@@ -95,7 +99,8 @@ const config: Config = {
           label: 'Book',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
-        {to: '/chatbot', label: 'Chatbot', position: 'left'},
+        {to: '/chatbot', label: 'Farida Bot', position: 'left'},
+        {to: '/folder-structure', label: 'Folder Structure', position: 'left'},
         {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',

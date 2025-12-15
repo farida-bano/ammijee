@@ -1,11 +1,24 @@
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding: 4rem 0;
   width: 100%;
+  background: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 100%);
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.featureIcon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  border-radius: 50%;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.featureIcon:hover {
+  transform: scale(1.1) rotate(5deg);
 }

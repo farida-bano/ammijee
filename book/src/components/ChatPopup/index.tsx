@@ -13,10 +13,11 @@ interface ChatPopupProps {
 
 const ChatPopup: React.FC<ChatPopupProps> = ({ isVisible, onClose }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { sender: 'bot', text: 'Hello! Ask me anything about Physical AI.' },
+    { sender: 'bot', text: 'Hello! I\'m Farida Bot. Ask me anything about Physical AI.' },
   ]);
   const [inputMessage, setInputMessage] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('en'); // For translation
   const chatBoxRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to the latest message
@@ -40,7 +41,10 @@ const ChatPopup: React.FC<ChatPopupProps> = ({ isVisible, onClose }) => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ query: query }),
+          body: JSON.stringify({
+            query: query,
+            language: selectedLanguage // Include language for translation
+          }),
         });
 
         if (response.ok) {
@@ -73,15 +77,35 @@ const ChatPopup: React.FC<ChatPopupProps> = ({ isVisible, onClose }) => {
   };
 
   const clearChat = () => {
-    setMessages([{ sender: 'bot', text: 'Hello! Ask me anything about Physical AI.' }]);
+    setMessages([{ sender: 'bot', text: 'Hello! I\'m Farida Bot. Ask me anything about Physical AI.' }]);
     setInputMessage('');
   };
+
+  // Language options for translation
+  const languages = [
+    { code: 'en', name: 'English' },
+    { code: 'ur', name: 'Urdu' },
+    { code: 'es', name: 'Spanish' },
+    { code: 'fr', name: 'French' },
+    { code: 'de', name: 'German' },
+  ];
 
   return (
     <div className={`${styles.chatPopup_wrapper} ${isVisible ? styles.chatPopup_visible : ''}`}>
       <div className={styles.chatPopup_container}>
         <div className={styles.chatPopup_header}>
-          <h2>RAG Chatbot</h2>
+          <div className={styles.chatPopup_headerContent}>
+            <h2>🤖 Farida Bot</h2>
+            <select
+              value={selectedLanguage}
+              onChange={(e) => setSelectedLanguage(e.target.value)}
+              className={styles.languageSelector}
+            >
+              {languages.map((lang) => (
+                <option key={lang.code} value={lang.code}>{lang.name}</option>
+              ))}
+            </select>
+          </div>
           <button className={styles.chatPopup_clearChatButton} onClick={clearChat}>
             Clear Chat
           </button>
