@@ -83,11 +83,17 @@ Build and deploy a complete educational book using:
 - 🤖 **Gemini cli**:[Official Website](https://gemini.google.com)
 
 ## 🏁 **Final Goal**
-Create a **practical, open-source resource** that bridges AI software with physical robotics hardware, making advanced robotics accessible to developers worldwide.
-
 ---
-**✨ Project Status**: Active Development  
-**📅 Timeline**: curriculum  
-**🎯 Deliverable**: Deployed GitHub Pages book  
+**📄 Hackthon :1
+
+-🌐 GitHub Repository (ammijee.git)
+-https://github.com/farida-bano/ammijee.git
+
+**🔗 Vercel App Link
+-https://ammijee-b1uh-git-main-farida-banos-projects.vercel.app/
+
+**🎥 YouTube Video (my book)
+-https://youtu.be/e8Zi5-7KOqg?si=9Nvuf5uyleoewi5w
+ 
 **🔓 License**: Open Source**
 
