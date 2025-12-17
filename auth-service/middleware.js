@@ -3,8 +3,6 @@
  * Middleware for validating auth tokens in other services
  */
 
-const axios = require('axios');
-
 const AUTH_SERVICE_URL = process.env.AUTH_SERVICE_URL || 'http://localhost:3001';
 
 class AuthMiddleware {
@@ -14,23 +12,30 @@ class AuthMiddleware {
   static async validateToken(req, res, next) {
     try {
       const authHeader = req.headers.authorization;
-      
+
       if (!authHeader || !authHeader.startsWith('Bearer ')) {
         return res.status(401).json({ error: 'Authorization header missing or invalid' });
       }
-      
+
       const token = authHeader.substring(7); // Remove 'Bearer ' prefix
-      
-      // Verify token with auth service
-      const response = await axios.get(`${AUTH_SERVICE_URL}/api/auth/session`, {
+
+      // Verify token with auth service using fetch API (Edge Function compatible)
+      const response = await fetch(`${AUTH_SERVICE_URL}/api/auth/session`, {
+        method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       });
-      
-      if (response.data && response.data.session) {
-        req.user = response.data.session.user;
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data && data.session) {
+        req.user = data.session.user;
         next();
       } else {
         return res.status(401).json({ error: 'Invalid token' });
@@ -46,14 +51,20 @@ class AuthMiddleware {
    */
   static async getCurrentUser(token) {
     try {
-      const response = await axios.get(`${AUTH_SERVICE_URL}/api/auth/session`, {
+      const response = await fetch(`${AUTH_SERVICE_URL}/api/auth/session`, {
+        method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       });
-      
-      return response.data?.session?.user || null;
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data?.session?.user || null;
     } catch (error) {
       console.error('Get user error:', error.message);
       return null;
