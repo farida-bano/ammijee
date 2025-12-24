@@ -31,3 +31,19 @@ Thumbs.db
 *.swp
 .vscode/
 .idea/
+
+# Credentials and sensitive files
+.qwen/
+*.creds.json
+*.tokens.json
+*.oauth.json
+oauth_crads.json
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+*.env.*
+ammi_auth.db
+vectorstore.pkl

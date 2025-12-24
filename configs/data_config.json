@@ -2,7 +2,7 @@
     "data_sources": [
         {
             "type": "directory",
-            "path": "book/summaries"
+            "path": "book/manuscript"
         }
     ],
     "text_splitter": {

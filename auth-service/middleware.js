@@ -19,8 +19,9 @@ class AuthMiddleware {
 
       const token = authHeader.substring(7); // Remove 'Bearer ' prefix
 
-      // Verify token with auth service using fetch API (Edge Function compatible)
-      const response = await fetch(`${AUTH_SERVICE_URL}/api/auth/session`, {
+      // Verify token with auth service using better-auth's getSession endpoint
+      // Better-auth typically exposes session validation at /api/auth/get-session
+      const response = await fetch(`${AUTH_SERVICE_URL}/api/auth/get-session`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -29,7 +30,7 @@ class AuthMiddleware {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        return res.status(401).json({ error: 'Invalid token' });
       }
 
       const data = await response.json();
@@ -51,7 +52,7 @@ class AuthMiddleware {
    */
   static async getCurrentUser(token) {
     try {
-      const response = await fetch(`${AUTH_SERVICE_URL}/api/auth/session`, {
+      const response = await fetch(`${AUTH_SERVICE_URL}/api/auth/get-session`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -60,7 +61,7 @@ class AuthMiddleware {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        return null;
       }
 
       const data = await response.json();

@@ -1,26 +1,31 @@
 # Project Folder and File Structure
 
 ## Root Directory (`/ammi`)
+- `.DS_Store`
+- `.claude/`
 - `.dockerignore`
+- `.env`
+- `.env.example`
+- `.gemini/`
+- `.git/`
+- `.github/`
 - `.gitignore`
+- `.specify/`
+- `FOLDER_STRUCTURE.md`
 - `GEMINI.md`
-- `output.txt`
 - `README.md`
-- `Users:sarosh:.qwen.fileloc`
-- `vectorstore.pkl`
-- [`.gemini/`](#gemini-directory)
-  - [`commands/`](#gemini-commands-directory)
-- [`.github/`](#github-directory)
-  - [`workflows/`](#github-workflows-directory)
-- [`.qwen/`](#qwen-directory)
-- [`.specify/`](#specify-directory)
-- [`.git/`](#git-directory) (hidden)
-- [`auth-service/`](#auth-service-directory)
-- [`book/`](#book-directory)
-- [`configs/`](#configs-directory)
-- [`history/`](#history-directory)
-- [`specs/`](#specs-directory)
-- [`website/`](#website-directory)
+- `RUNNING_PROJECT.md` (untracked)
+- `chatbot_constitution.md` (untracked)
+- `chatbot_dependencies.md` (untracked)
+- `edge-middleware.js`
+- `run_project.sh` (untracked)
+- `vectorstore.pkl` (untracked, large binary file - should be gitignored)
+- `auth-service/`
+- `book/`
+- `configs/`
+- `history/`
+- `specs/`
+- `website/`
 
 ### `.gemini/` Directory
 - `commands/`
@@ -29,25 +34,25 @@
 - `workflows/`
 
 ### `auth-service/` Directory
+- `.env`
+- `.env.example`
+- `API.md`
+- `Dockerfile`
+- `README.md`
+- `RUNNING.md`
+- `auth.test.js`
 - `better-auth-migrations/`
-  - `migrate.js` - Script to handle database migrations for better-auth using Prisma (supports generate-only, create-migration, reset, status commands)
-- `prisma/`
-  - `dev.db` - SQLite database file
-  - `schema.prisma` - Prisma schema definition
+- `client-utils.js`
+- `docker-compose.yml`
+- `index.js`
+- `middleware.js`
 - `node_modules/` (hidden)
-- `API.md` - API documentation
-- `auth.test.js` - Authentication tests
-- `client-utils.js` - Client-side utilities
-- `docker-compose.yml` - Docker configuration
-- `Dockerfile` - Container configuration
-- `index.js` - Main application entry point (Express server with better-auth and security middleware)
-- `middleware.js` - Custom middleware functions
-- `package-lock.json` - Dependency lock file
-- `package.json` - Project configuration with scripts for dev, start, migrate, and testing
-- `README.md` - Project documentation
-- `routes.js` - Custom route definitions
-- `RUNNING.md` - Instructions for running the service
-- `security.js` - Security middleware and configurations (rate limiting, CORS, validation)
+- `package-lock.json`
+- `package.json`
+- `prisma/`
+- `routes.js`
+- `security.js`
+- `test.js`
 
 ### `book/` Directory
 - `blog/`
@@ -74,22 +79,17 @@
   - `chapter-12.md`
   - `chapter-13.md`
   - `chapter-14.md`
-  - `chapter-template.md`
+  - `folder-structure.md`
   - `intro.md`
 - `src/`
   - `components/`
-    - `ChatPopup/`
-      - `ChatPopup.module.css`
-      - `index.tsx`
     - `HomepageFeatures/`
       - `index.tsx`
       - `styles.module.css`
   - `css/`
-    - `chatbot.css`
     - `custom.css`
   - `pages/`
     - `404.tsx`
-    - `chatbot.tsx`
     - `index.module.css`
     - `index.tsx`
     - `markdown-page.md`
@@ -103,20 +103,16 @@
       - `index.tsx`
 - `static/`
   - `img/`
-    - `1.jpg`
-    - `2.jpg`
-    - `3.jpg`
+    - `.nojekyll`
     - `book.png`
     - `docusaurus-social-card.jpg`
     - `docusaurus.png`
     - `favicon.ico`
     - `logo.svg`
-    - `logo1.png`
     - `robot.png`
     - `undraw_docusaurus_mountain.svg`
     - `undraw_docusaurus_react.svg`
     - `undraw_docusaurus_tree.svg`
-  - `.nojekyll`
 - `summaries/` (empty)
 - `.gitignore`
 - `docusaurus.config.ts`
@@ -184,21 +180,6 @@
     - `authors.yml`
     - `tags.yml`
   - `docs/`
-    - `tutorial-basics/`
-      - `_category_.json`
-      - `congratulations.md`
-      - `create-a-blog-post.md`
-      - `create-a-document.md`
-      - `create-a-page.md`
-      - `deploy-your-site.md`
-      - `markdown-features.mdx`
-    - `tutorial-extras/`
-      - `img/`
-        - `docsVersionDropdown.png`
-        - `localeDropdown.png`
-      - `_category_.json`
-      - `manage-docs-versions.md`
-      - `translate-your-site.md`
     - `chapter-01.md`
     - `chapter-02.md`
     - `chapter-03.md`
@@ -213,7 +194,6 @@
     - `chapter-12.md`
     - `chapter-13.md`
     - `chapter-14.md`
-    - `intro.md`
   - `src/`
     - `components/`
       - `ChatBot/`
@@ -232,7 +212,7 @@
     - `theme/`
       - `Banner/`
         - `index.js`
-      - `DocItem/` (empty)
+      - `DocItem/`
       - `Footer/`
         - `index.js`
         - `styles.module.css`
@@ -240,10 +220,8 @@
         - `index.js`
       - `Root.tsx`
   - `static/`
+    - `.nojekyll`
     - `img/`
-      - `1.svg`
-      - `2.svg`
-      - `3.svg`
       - `book.png`
       - `docusaurus-social-card.jpg`
       - `docusaurus.png`
@@ -256,7 +234,6 @@
       - `undraw_docusaurus_mountain.svg`
       - `undraw_docusaurus_react.svg`
       - `undraw_docusaurus_tree.svg`
-    - `.nojekyll`
   - `.gitignore`
   - `docusaurus.config.ts`
   - `FARIDA_BOT_IMPLEMENTATION.md`
@@ -265,7 +242,6 @@
   - `package.json`
   - `README.md`
   - `script.js`
-  - `sidebars.js`
   - `sidebars.ts`
   - `style.css`
   - `tsconfig.json`

@@ -11,19 +11,11 @@ const {
   corsOptions
 } = require('./security');
 
+// Import better-auth
 const { betterAuth } = require('better-auth');
-const { prismaAdapter } = require('better-auth/adapters/prisma');
 
 // Local imports
 const customRoutes = require('./routes');
-
-// Initialize Prisma adapter
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
-
-const adapter = prismaAdapter({
-  client: prisma,
-});
 
 // Configure better-auth
 const auth = betterAuth({
@@ -46,7 +38,10 @@ const auth = betterAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     },
   },
-  database: adapter,
+  database: {
+    provider: "sqlite",
+    url: process.env.DATABASE_URL || "file:./ammi_auth.db"
+  },
   advanced: {
     rateLimiter: {
       windowMs: 15 * 60 * 1000, // 15 minutes
@@ -112,7 +107,6 @@ const server = app.listen(PORT, () => {
 // Graceful shutdown
 process.on('SIGINT', async () => {
   console.log('Shutting down gracefully...');
-  await prisma.$disconnect();
   server.close(() => {
     console.log('Server closed.');
     process.exit(0);
@@ -120,7 +114,6 @@ process.on('SIGINT', async () => {
 });
 
 process.on('SIGTERM', async () => {
-  await prisma.$disconnect();
   server.close(() => {
     console.log('Server closed.');
     process.exit(0);

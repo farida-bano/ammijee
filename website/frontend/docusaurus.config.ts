@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Jee Book',
+  title: 'Book',
   tagline: 'Farida Bano - With Integrated AI Assistant',
   favicon: 'img/2.jpg',
 
@@ -45,6 +45,7 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           routeBasePath: '/', // Serve the docs at the site's root
           editUrl: undefined, // Explicitly set to undefined to remove "edit this page" links
+          editCurrentVersion: false, // Disable editing of current version
         },
         blog: {
           showReadingTime: true,
@@ -72,10 +73,15 @@ const config: Config = {
     colorMode: {
       respectPrefersColorScheme: true,
     },
+    docs: {
+      sidebar: {
+        hideable: true,
+      },
+    },
     navbar: {
-      title: 'Jee Book',
+      title: 'Book',
       logo: {
-        alt: 'Jee Logo',
+        alt: 'Book Logo',
         src: 'img/logo.png',
         width: 32,
         height: 32,
@@ -89,13 +95,6 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          type: 'doc',
-          docId: 'intro',
-          position: 'left',
-          label: 'Quick Start',
-        },
-        {type: 'doc', docId: 'folder-structure', label: 'Folder Structure', position: 'left'},
-        {
           href: 'https://github.com/your-org/physical-ai-book',
           label: 'GitHub',
           position: 'right',
@@ -108,10 +107,6 @@ const config: Config = {
         {
           title: 'Book Sections',
           items: [
-            {
-              label: 'Introduction',
-              to: '/intro',
-            },
             {
               label: 'Chapter 1: Physics Simulators',
               to: '/chapter-01',
@@ -144,7 +139,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Jee. Powered by Farida Bot AI Assistant. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Book. Powered by Farida Bot AI Assistant. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

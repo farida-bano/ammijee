@@ -73,7 +73,7 @@ Build and deploy a complete educational book using:
 
 ## 🔗 **Important Links**
 ### **Course Resources:**
-- 🌐 **Course Website**: [ai-native.panaversity.org](http://ai-native.panaversity.org)
+ok - 🌐 **Course Website**: [ai-native.panaversity.org](http://ai-native.panaversity.org)
 - 📝 **Application Form**: [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSeAaaZ2Za8S37Lvk6FjVgRKvlZ5SmGqGNm1vDmI7eIYxct-XA/viewform)
 - 🎥 **Introduction Video**: [YouTube (1h 36m)](https://youtu.be/YY67DTGJ96k)
 

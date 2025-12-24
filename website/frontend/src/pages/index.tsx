@@ -6,8 +6,8 @@ import Layout from '@theme/Layout';
 function Home() {
   return (
     <Layout
-      title={`Jee`}
-      description="Jee educational content">
+      title={`Book`}
+      description="Book educational content">
       <div className="hero hero--primary" style={{
         position: 'relative',
         overflow: 'hidden',
@@ -41,7 +41,7 @@ function Home() {
               <h1 className="hero__title" style={{color: 'white'}}>Physical AI & Humanoid Robotics</h1>
               <p className="hero__subtitle" style={{color: 'rgba(255, 255, 255, 0.9)'}}>A comprehensive guide to building intelligent, human-like robots</p>
               <div className="margin-top--lg">
-                <a className="button button--secondary button--lg" href={useBaseUrl('/intro')}>
+                <a className="button button--secondary button--lg" href={useBaseUrl('/chapter-01')}>
                   Start Reading
                 </a>
                 <a className="button button--outline button--lg margin-left--md" href={useBaseUrl('/chapter-01')}>

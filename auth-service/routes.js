@@ -5,7 +5,6 @@
 
 const express = require('express');
 const router = express.Router();
-const { auth } = require('./index'); // Import the auth instance
 const AuthMiddleware = require('./middleware');
 
 // Route to update user role (admin only)
@@ -21,7 +20,7 @@ router.put('/admin/users/:userId/role', AuthMiddleware.validateToken, async (req
 
     // In a real implementation, you would update the user's role in the database
     // This is a simplified version for demonstration
-    
+
     // Validate role
     const validRoles = ['user', 'admin', 'moderator'];
     if (!validRoles.includes(role)) {
@@ -31,8 +30,8 @@ router.put('/admin/users/:userId/role', AuthMiddleware.validateToken, async (req
     // Update user role
     // const updatedUser = await updateUserRole(userId, role);
 
-    res.json({ 
-      message: `User role updated to ${role}`, 
+    res.json({
+      message: `User role updated to ${role}`,
       userId,
       newRole: role
     });
@@ -52,8 +51,8 @@ router.get('/admin/users', AuthMiddleware.validateToken, async (req, res) => {
 
     // In a real implementation, you would fetch users from the database
     // const users = await getAllUsers();
-    
-    res.json({ 
+
+    res.json({
       message: 'Admin access granted',
       users: [] // Return empty array as placeholder
     });
@@ -67,7 +66,7 @@ router.get('/admin/users', AuthMiddleware.validateToken, async (req, res) => {
 router.get('/profile', AuthMiddleware.validateToken, async (req, res) => {
   try {
     const { id, email, name, role, profilePicture } = req.user;
-    
+
     res.json({
       user: {
         id,
@@ -88,10 +87,10 @@ router.put('/profile', AuthMiddleware.validateToken, async (req, res) => {
   try {
     const { name, profilePicture } = req.body;
     const userId = req.user.id;
-    
+
     // In a real implementation, you would update the user in the database
     // const updatedUser = await updateUserProfile(userId, { name, profilePicture });
-    
+
     res.json({
       message: 'Profile updated successfully',
       user: {

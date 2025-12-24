@@ -1,5 +1,3 @@
-from langchain_community.vectorstores import Chroma
-from langchain_core.embeddings import Embeddings
 from sentence_transformers import SentenceTransformer
 import numpy as np
 import os
